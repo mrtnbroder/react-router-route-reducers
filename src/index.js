@@ -1,4 +1,4 @@
 
-import RouterReducer from './RouterReducer'
+import RoutesReducer from './RoutesReducer'
 
-export default RouterReducer
+export default RoutesReducer

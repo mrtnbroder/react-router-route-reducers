@@ -5,8 +5,7 @@ import { combineReducers } from 'redux'
 import RouterContext from 'react-router/lib/RouterContext'
 import { getNestedState } from './nestedState'
 import { connect } from 'react-redux'
-
-const NAMESPACE = 'reduxresolve'
+import { NAMESPACE } from './constants'
 
 const render = (props) => {
   const { store } = props
@@ -54,7 +53,11 @@ const handleOnRouteChange = ({ location: prevLocation }, nextProps) => {
   if (pathChanged || searchChanged) mkReducers(nextProps)
 }
 
-class ReduxResolve extends Component {
+class RoutesReducer extends Component {
+
+  static childContextTypes = {
+    store: PT.object.isRequired
+  }
 
   static propTypes = {
     routes: PT.array.isRequired,
@@ -90,8 +93,4 @@ class ReduxResolve extends Component {
 
 }
 
-ReduxResolve.childContextTypes = {
-  store: PT.object.isRequired
-}
-
-export default connect(identityReducer)(ReduxResolve)
+export default connect(identityReducer)(RoutesReducer)

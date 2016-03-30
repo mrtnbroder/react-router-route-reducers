@@ -8,14 +8,14 @@ Route based reducers for React-Router and Redux.
 
 ```js
 // No need to wrap your Router in <Provider store={store}/>
-// It will be handled inside RouterReducer
+// It will be handled inside RoutesReducer
 <Router render={onRender(store)}>
   {routes}
 </Router>
 }
 
 const onRender = (store) => (props) => (
-  <RouterReducer
+  <RoutesReducer
     reducers={reducers} // all other global reducers
     store={store} // pass the redux store here
     {...props}

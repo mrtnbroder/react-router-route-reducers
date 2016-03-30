@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/mrtnbroder/react-router-route-reducers#readme",
   "peerDependencies": {
-    "react": "^0.14.x",
+    "react": ">= 0.14.x < 15.x",
     "react-redux": "^4.x",
     "react-router": "^2.x",
     "redux": "^3.x"

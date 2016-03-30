@@ -1,6 +1,6 @@
 {
   "name": "react-router-route-reducers",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Route based reducers for react-router and redux",
   "main": "build/index.js",
   "jsnext:main": "src/index.js",

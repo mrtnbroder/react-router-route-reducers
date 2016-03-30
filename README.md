@@ -4,11 +4,12 @@
 ![dependency badge](https://david-dm.org/mrtnbroder/react-router-route-reducers.svg)
 [![devDependency Status](https://david-dm.org/mrtnbroder/react-router-route-reducers/dev-status.svg)](https://david-dm.org/mrtnbroder/react-router-route-reducers#info=devDependencies)
 
-Add reducers to your routes and let them be combined into a single state object that updates and replaces itself on route transition.
+Add reducer to your routes and let them be composed and combined into a single state object that follows your route-structure.
 
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
+* [Rationale](#rationale)
 * [API](#api)
 * [Contribute](#contribute)
 * [Credits](#credits)
@@ -18,20 +19,20 @@ Add reducers to your routes and let them be combined into a single state object 
 Install the lib with:
 
 ```sh
-$ npm i --save react-router-route-reducers
+$ npm i -S react-router-route-reducers
 ```
 
 and make sure to have the latest versions of `redux`, `react-router`, `react-redux` and `react` installed.
 
 ```sh
-$ npm i --save react@ react-router redux react-redux
+$ npm i -S react@next react-router redux react-redux
 ```
 
 ## Usage
 
 Add a reducer to your route:
 
-```js
+```jsx
 <Route path='/' reducer={rootReducer}>
   <IndexRoute reducer={indexReducer}/>
   <Route path='dashboard' reducer={dashboardReducer}>
@@ -56,9 +57,9 @@ or as plain routes (recommended):
 }
 ```
 
-Now add RoutesReducer to the render function of ReactRouter
+Pass the RoutesReducer to the render function of ReactRouter
 
-```js
+```jsx
 import RoutesReducer from 'react-router-route-reducers'
 ...
 
@@ -78,7 +79,7 @@ const onRender = (store) => (props) => (
 )
 ```
 
-Your reducers will then be combined into the following structure...:
+Your reducers will then be composed into the following structure:
 
 ```js
 {
@@ -95,15 +96,19 @@ Your reducers will then be combined into the following structure...:
 }
 ```
 
-..and your data is being passed as `{ model }` to your component:
+..and your data will be passed as `{ model }` to your component:
 
-```js
+```jsx
 export const view = ({ model, dispatch, ...props }) => (
   <div {...props}>
     <h2>{model.data}</h2>
   </div>
 )
 ```
+
+## Rationale
+
+Coming soon...
 
 ## API
 

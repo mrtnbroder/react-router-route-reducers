@@ -1,12 +1,35 @@
+
 # react-router-route-reducers
 
-WIP! Use with caution.
+![dependency badge](https://david-dm.org/mrtnbroder/react-router-route-reducers.svg)
+[![devDependency Status](https://david-dm.org/mrtnbroder/react-router-route-reducers/dev-status.svg)](https://david-dm.org/mrtnbroder/react-router-route-reducers#info=devDependencies)
 
-Route based reducers for React-Router and Redux.
+Add reducers to your routes and let them be combined into a single state object that updates and replaces itself on route transition.
+
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [API](#api)
+* [Contribute](#contribute)
+* [Credits](#credits)
+
+## Installation
+
+Install the lib with:
+
+```sh
+$ npm i --save react-router-route-reducers
+```
+
+and make sure to have the latest versions of `redux`, `react-router`, `react-redux` and `react` installed.
+
+```sh
+$ npm i --save react@ react-router redux react-redux
+```
 
 ## Usage
 
-Add reducers to your routes
+Add a reducer to your route:
 
 ```js
 <Route path='/' reducer={rootReducer}>
@@ -15,7 +38,7 @@ Add reducers to your routes
 </Route>
 ```
 
-or as concise plain routes:
+or as plain routes (recommended):
 
 ```js
 {
@@ -36,6 +59,9 @@ or as concise plain routes:
 Now add RoutesReducer to the render function of ReactRouter
 
 ```js
+import RoutesReducer from 'react-router-route-reducers'
+...
+
 const store = configureStore(reducers, __INITAL_STATE__)
 // No need to wrap React-Router in <Provider/>, it will be handled inside <RoutesReducer/>
 <Router render={onRender(store)}>
@@ -52,7 +78,7 @@ const onRender = (store) => (props) => (
 )
 ```
 
-Your reducers will then be combined into the following structure:
+Your reducers will then be combined into the following structure...:
 
 ```js
 {
@@ -69,7 +95,7 @@ Your reducers will then be combined into the following structure:
 }
 ```
 
-Add being passed as `{ model }` to your component:
+..and your data is being passed as `{ model }` to your component:
 
 ```js
 export const view = ({ model, dispatch, ...props }) => (
@@ -89,15 +115,15 @@ Primary component of react-router-route-reducers. It combines your routes-reduce
 
 ##### `store` (required)
 
-The redux store.
+The Redux store instance.
 
 ##### `reducers`
 
-All other global reducers that you want.
+All other global reducers.
 
 ## Contribute
 
-Feel free to
+Please do! Feel free to submit any bugs and/or features you'd like to see in this lib.
 
 ## Credits
 

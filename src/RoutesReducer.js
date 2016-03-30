@@ -7,31 +7,21 @@ import { getNestedState } from './nestedState'
 import { connect } from 'react-redux'
 import { NAMESPACE } from './constants'
 
-const render = (props) => {
-  const { store } = props
-  const createElement = baseCreateElement(store)
-  const contextProps = { ...props, createElement }
-
-  return (
-    <RouterContext {...contextProps}/>
-  )
-}
-
 const getReducerOfRoute = (route) => route.reducer
 
 const identityReducer = (state = {}) => state
 
-const createShape = (self, child) => ({ self, child })
+const mkShape = (self, child) => ({ self, child })
 
 const validShape = (shape) => (shape && shape.self && shape.child) ? shape : false
 
 const nestReducers = (routes) => (state, action) => {
-  const currentState = validShape(state) || createShape()
+  const currentState = validShape(state) || mkShape()
 
   return routes.reduceRight((prev, routeReducer = identityReducer, depth) => {
     const { self: prevSelf } = getNestedState(currentState, depth)
-    const reducer = combineReducers(createShape(routeReducer, identityReducer))
-    const next = reducer(createShape(prevSelf, prev), action)
+    const reducer = combineReducers(mkShape(routeReducer, identityReducer))
+    const next = reducer(mkShape(prevSelf, prev), action)
 
     return next
   }, null)
@@ -60,13 +50,13 @@ class RoutesReducer extends Component {
   }
 
   static propTypes = {
-    routes: PT.array.isRequired,
+    // combineReducers: PT.func,
     location: PT.object.isRequired,
-    router: PT.object.isRequired,
-    store: PT.object.isRequired,
     params: PT.object.isRequired,
     reducers: PT.object.isRequired,
-    // combineReducers: PT.func,
+    router: PT.object.isRequired,
+    routes: PT.array.isRequired,
+    store: PT.object.isRequired,
   }
 
   static defaultProps = {
@@ -88,7 +78,11 @@ class RoutesReducer extends Component {
   }
 
   render() {
-    return render(this.props)
+    const { store } = this.props
+    const createElement = baseCreateElement(store)
+    const contextProps = { ...this.props, createElement }
+
+    return <RouterContext {...contextProps}/>
   }
 
 }

@@ -1,5 +1,5 @@
 
-import { reduce } from 'ramda'
+import reduce from 'ramda/src/reduce'
 
 export const getNestedState = (state, depth) => {
   return reduce((prev) => {

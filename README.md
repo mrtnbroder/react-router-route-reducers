@@ -1,2 +1,30 @@
 # react-router-route-reducers
-Route based reducers for react-router and redux
+
+WIP! Use with caution.
+
+Route based reducers for React-Router and Redux.
+
+## Usage
+
+```js
+// No need to wrap your Router in <Provider store={store}/>
+// It will be handled inside RouterReducer
+<Router render={onRender(store)}>
+  {routes}
+</Router>
+}
+
+const onRender = (store) => (props) => (
+  <RouterReducer
+    reducers={reducers} // all other global reducers
+    store={store} // pass the redux store here
+    {...props}
+    />
+)
+```
+
+## API
+
+WIP
+
+## Contribute

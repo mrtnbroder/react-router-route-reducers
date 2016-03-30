@@ -1,4 +1,4 @@
 
-import ReduxResolve from './ReduxResolve'
+import RouterReducer from './RouterReducer'
 
-export default ReduxResolve
+export default RouterReducer

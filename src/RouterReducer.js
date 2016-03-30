@@ -2,7 +2,7 @@
 import React, { PropTypes as PT, Component } from 'react'
 import baseCreateElement from './createElement'
 import { combineReducers } from 'redux'
-import { RouterContext } from 'react-router/es6'
+import RouterContext from 'react-router/lib/RouterContext'
 import { getNestedState } from './nestedState'
 import { connect } from 'react-redux'
 

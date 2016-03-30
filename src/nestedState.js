@@ -1,8 +1,6 @@
 
-import reduce from 'ramda/src/reduce'
-
 export const getNestedState = (state, depth) => {
-  return reduce((prev) => {
-    return prev.child || {}
-  }, state)(Array(depth))
+  if (depth && state.child)
+    return getNestedState(state.child, depth - 1)
+  return state || {}
 }

@@ -1,0 +1,33 @@
+{
+  "name": "react-router-route-reducers",
+  "version": "0.0.1",
+  "description": "Route based reducers for react-router and redux",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtnbroder/react-router-route-reducers.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "react-router",
+    "reducer",
+    "reducers",
+    "component",
+    "localstate",
+    "stateless",
+    "fp",
+    "functional",
+    "frp",
+    "router"
+  ],
+  "author": "Martin Broder <hello@martinbroder.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrtnbroder/react-router-route-reducers/issues"
+  },
+  "homepage": "https://github.com/mrtnbroder/react-router-route-reducers#readme"
+}

@@ -1,3 +1,3 @@
-# Table of Contents
+## Table of Contents
 
-* [API](https://github.com/mrtnbroder/react-router-route-reducers/docs/API.md)
+* [API](https://github.com/mrtnbroder/react-router-route-reducers/blob/master/docs/API.md)

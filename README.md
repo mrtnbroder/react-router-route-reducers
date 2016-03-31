@@ -6,22 +6,21 @@
 
 Add reducer to your routes and let them be composed and combined into a single state object that follows your route-structure.
 
-## Rationale
-
-The idea is actually inspired by the Elm architecture, which basically describes your component to have these three things:
-a model, a view function and an update function.
-
-The question now is, how do I get the model into my view?
-
-This is what react-router-route-reducers does for you. You define the component, add a reducer to it and have the model automagically fed into your view function.
-
 ## Table of Contents
 * [Rationale](#rationale)
 * [Installation](#installation)
 * [Usage](#usage)
-* [API](https://github.com/mrtnbroder/react-router-route-reducers/docs/API.md)
+* [API](https://github.com/mrtnbroder/react-router-route-reducers/blob/master/docs/API.md)
 * [Contribute](#contribute)
 * [Credits](#credits)
+
+## Rationale
+
+The idea is actually inspired by the Elm architecture, which describes your component to have these three basic things: a model, a view function and an update function.
+
+The question is, how do I get the model into my view without writing a lot of boilerplate?
+
+This is what `react-router-route-reducers` does for you. You define the component, add a reducer to the route and have the model automagically fed into your view function.
 
 ## Installation
 

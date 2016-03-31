@@ -11,6 +11,7 @@ Add reducer to your routes and let them be composed and combined into a single s
 * [Installation](#installation)
 * [Usage](#usage)
 * [API](https://github.com/mrtnbroder/react-router-route-reducers/blob/master/docs/API.md)
+* [Todos](#todos)
 * [Contribute](#contribute)
 * [Credits](#credits)
 
@@ -70,7 +71,7 @@ Pass the RoutesReducer to the render function of ReactRouter
 Client:
 ```jsx
 import React from 'react'
-import reducers from '../other/global/reducers' // (optional)
+import reducers from '../other/global/reducers' // needs to be an object (optional)
 import RoutesReducer from 'react-router-route-reducers'
 import { render } from 'react-dom'
 import { createStore } from 'redux'
@@ -87,7 +88,7 @@ const onRender = (store) => (props) => (
 )
 
 const main = () => {
-  const store = createStore(reducers/*, __INITIAL_STATE__ */)
+  const store = createStore(reducers/*, no need to pass inital state, it will be handled by RoutesReducer */)
   const rootEl = document.getElementById('app')
 
   // No need to wrap React-Router in <Provider/>, it will be handled inside <RoutesReducer/>
@@ -111,7 +112,7 @@ import routes from '../routes'
 import RouterReducer, { loadStateOnServer } from 'react-router-route-reducers'
 import { match } from 'react-router/es6'
 import { renderToString } from 'react-dom/server'
-import reducers from '../other/global/reducers' // (optional)
+import reducers from '../other/global/reducers' // needs to be an object (optional)
 
 export default (app) => {
   app.get('*', handleRequests)
@@ -170,6 +171,11 @@ export const view = ({ model, dispatch, ...props }) => (
   </div>
 )
 ```
+
+## Todos
+
+[ ] - Add Tests
+[ ] - Handle Async Data
 
 ## Contribute
 

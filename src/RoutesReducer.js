@@ -1,47 +1,9 @@
 
 import React, { PropTypes as PT, Component } from 'react'
-import baseCreateElement from './createElement'
-import { combineReducers } from 'redux'
-import RouterContext from 'react-router/lib/RouterContext'
-import { getNestedState } from './nestedState'
+import { createElement as baseCreateElement } from './createElement'
+import { RouterContext } from 'react-router/es6'
 import { connect } from 'react-redux'
-import { NAMESPACE } from './constants'
-
-const getReducerOfRoute = (route) => route.reducer
-
-const identityReducer = (state = {}) => state
-
-const mkShape = (self, child) => ({ self, child })
-
-const validShape = (shape) => (shape && shape.self && shape.child) ? shape : false
-
-const nestReducers = (routes) => (state, action) => {
-  const currentState = validShape(state) || mkShape()
-
-  return routes.reduceRight((prev, routeReducer = identityReducer, depth) => {
-    const { self: prevSelf } = getNestedState(currentState, depth)
-    const reducer = combineReducers(mkShape(routeReducer, identityReducer))
-    const next = reducer(mkShape(prevSelf, prev), action)
-
-    return next
-  }, null)
-}
-
-const mkReducers = ({ store, routes, reducers }) => {
-  const routeReducers = routes.map(getReducerOfRoute)
-  const nestedReducer = nestReducers(routeReducers)
-  const rootReducer = combineReducers({ ...reducers, [NAMESPACE]: nestedReducer })
-
-  store.replaceReducer(rootReducer)
-}
-
-const handleOnRouteChange = ({ location: prevLocation }, nextProps) => {
-  const { location: nextLocation } = nextProps
-  const pathChanged = prevLocation.pathname !== nextLocation.pathname
-  const searchChanged = prevLocation.search !== nextLocation.search
-
-  if (pathChanged || searchChanged) mkReducers(nextProps)
-}
+import { mkReducers, baseReducer } from './nestReducers'
 
 class RoutesReducer extends Component {
 
@@ -74,7 +36,15 @@ class RoutesReducer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    handleOnRouteChange(this.props, nextProps)
+    this.handleOnRouteChange(this.props, nextProps)
+  }
+
+  handleOnRouteChange = ({ location: prevLocation }, nextProps) => {
+    const { location: nextLocation } = nextProps
+    const pathChanged = prevLocation.pathname !== nextLocation.pathname
+    const searchChanged = prevLocation.search !== nextLocation.search
+
+    if (pathChanged || searchChanged) mkReducers(nextProps)
   }
 
   render() {
@@ -87,4 +57,4 @@ class RoutesReducer extends Component {
 
 }
 
-export default connect(identityReducer)(RoutesReducer)
+export default connect(baseReducer)(RoutesReducer)

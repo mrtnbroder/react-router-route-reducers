@@ -1,2 +1,2 @@
 
-export const NAMESPACE = 'route-reducers'
+export const NAMESPACE = 'routereducers'

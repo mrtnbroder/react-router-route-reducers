@@ -1,7 +1,7 @@
 
 import React, { PropTypes as PT, Component } from 'react'
 import { createElement as baseCreateElement } from './createElement'
-import { RouterContext } from 'react-router/es6'
+import RouterContext from 'react-router/lib/RouterContext'
 import { connect } from 'react-redux'
 import { mkReducers, baseReducer } from './nestReducers'
 

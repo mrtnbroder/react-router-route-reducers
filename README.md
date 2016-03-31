@@ -6,11 +6,20 @@
 
 Add reducer to your routes and let them be composed and combined into a single state object that follows your route-structure.
 
+## Rationale
+
+The idea is actually inspired by the Elm architecture, which basically describes your component to have these three things:
+a model, a view function and an update function.
+
+The question now is, how do I get the model into my view?
+
+This is what react-router-route-reducers does for you. You define the component, add a reducer to it and have the model automagically fed into your view function.
+
 ## Table of Contents
+* [Rationale](#rationale)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Rationale](#rationale)
-* [API](#api)
+* [API](https://github.com/mrtnbroder/react-router-route-reducers/docs/API.md)
 * [Contribute](#contribute)
 * [Credits](#credits)
 
@@ -60,23 +69,37 @@ or as plain routes (recommended):
 Pass the RoutesReducer to the render function of ReactRouter
 
 ```jsx
+import React from 'react'
+import reducers from '../other/global/reducers' // (optional)
 import RoutesReducer from 'react-router-route-reducers'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import routes from '../routes'
+import { Router, browserHistory } from 'react-router'
 ...
-
-const store = configureStore(reducers, __INITAL_STATE__)
-// No need to wrap React-Router in <Provider/>, it will be handled inside <RoutesReducer/>
-<Router render={onRender(store)}>
-  {routes}
-</Router>
-}
 
 const onRender = (store) => (props) => (
   <RoutesReducer
+    {...props}
     reducers={reducers} // all other global reducers
     store={store} // pass the redux store here
-    {...props}
     />
 )
+
+const main = () => {
+  const store = createStore(reducers/*, __INITIAL_STATE__ */)
+  const rootEl = document.getElementById('app')
+
+  // No need to wrap React-Router in <Provider/>, it will be handled inside <RoutesReducer/>
+  render(
+    <Router history={browserHistory} render={onRender(store)}>
+      {routes}
+    </Router>,
+    rootEl
+  )
+}
+
+main()
 ```
 
 Your reducers will then be composed into the following structure:
@@ -96,7 +119,7 @@ Your reducers will then be composed into the following structure:
 }
 ```
 
-..and your data will be passed as `{ model }` to your component:
+..and your data will be passed as `model` to your view function:
 
 ```jsx
 export const view = ({ model, dispatch, ...props }) => (
@@ -106,30 +129,10 @@ export const view = ({ model, dispatch, ...props }) => (
 )
 ```
 
-## Rationale
-
-Coming soon...
-
-## API
-
-### `<RoutesReducer>`
-
-Primary component of react-router-route-reducers. It combines your routes-reducers into a single object based on your route structure.
-
-#### Props
-
-##### `store` (required)
-
-The Redux store instance.
-
-##### `reducers`
-
-All other global reducers.
-
 ## Contribute
 
 Please do! Feel free to submit any bugs and/or features you'd like to see in this lib.
 
 ## Credits
 
-Credits go to the team behind [Ground-Control](https://github.com/raisemarketplace/ground-control), as it is heavily inspired by it. Also a big shout out to [Julien Goux](https://github.com/jgoux) for always helping me out when I have a brain fart 😄.
+Credits go to the team behind [Ground-Control](https://github.com/raisemarketplace/ground-control), as it is basically a fork from it. Also a big shout out to my friend [Julien Goux](https://github.com/jgoux) for always helping me out when I have a brain fart 😄.

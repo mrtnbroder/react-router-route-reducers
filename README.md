@@ -106,7 +106,7 @@ Your reducers will then be composed into the following structure:
 
 ```js
 {
-  'route-reducers': {
+  routereducers: {
     self: rootReducer,
     child: {
       self: indexReducer,

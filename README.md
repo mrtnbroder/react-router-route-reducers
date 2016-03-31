@@ -174,8 +174,8 @@ export const view = ({ model, dispatch, ...props }) => (
 
 ## Todos
 
-[ ] - Add Tests
-[ ] - Handle Async Data
+* [ ] Add Tests
+* [ ] Handle Async Data
 
 ## Contribute
 

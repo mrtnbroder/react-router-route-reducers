@@ -1,6 +1,6 @@
 {
   "name": "react-router-route-reducers",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Elm inspired, route-based reducers for React-Router and Redux",
   "main": "build/index.js",
   "jsnext:main": "src/index.js",

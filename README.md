@@ -67,6 +67,7 @@ or as plain routes (recommended):
 
 Pass the RoutesReducer to the render function of ReactRouter
 
+Client:
 ```jsx
 import React from 'react'
 import reducers from '../other/global/reducers' // (optional)
@@ -99,6 +100,48 @@ const main = () => {
 }
 
 main()
+```
+
+Server:
+```jsx
+import { createStore } from 'redux'
+import Html from './components/Html'
+import React from 'react'
+import routes from '../routes'
+import RouterReducer, { loadStateOnServer } from 'react-router-route-reducers'
+import { match } from 'react-router/es6'
+import { renderToString } from 'react-dom/server'
+import reducers from '../other/global/reducers' // (optional)
+
+export default (app) => {
+  app.get('*', handleRequests)
+
+  function handleRequests(req, res) {
+    match({ routes, location: req.url }, (err, redirect, renderProps) => {
+      if (err)
+        res.status(500).send(err.message)
+      else if (redirect)
+        res.status(302).redirect(redirect.pathname + redirect.search)
+      else {
+        const store = configureStore(reducers)()
+        const nextProps = { ...renderProps, reducers, store }
+
+        loadStateOnServer(nextProps)((initalState) => {
+          const html = renderHtml(nextProps, initalState)
+
+          res.status(200).send(html)
+        })
+      }
+    })
+  }
+
+  function renderHtml(nextProps, initalState) {
+    const component = <RouterReducer {...nextProps}/>
+    const content = renderToString(component)
+
+    return Html.renderToStaticMarkup({ content, initalState })
+  }
+}
 ```
 
 Your reducers will then be composed into the following structure:

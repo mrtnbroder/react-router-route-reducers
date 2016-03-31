@@ -13,3 +13,7 @@ The Redux store instance.
 #### `reducers`
 
 All other global reducers.
+
+## `loadStateOnServer(props)`
+
+Creates the initalState for server-side rendering.

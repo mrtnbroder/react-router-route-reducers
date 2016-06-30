@@ -34,7 +34,7 @@ $ npm i -S react-router-route-reducers
 and make sure to have the latest versions of `redux`, `react-router`, `react-redux` and `react` installed.
 
 ```sh
-$ npm i -S react@next react-router redux react-redux
+$ npm i -S react react-router redux react-redux
 ```
 
 ## Usage

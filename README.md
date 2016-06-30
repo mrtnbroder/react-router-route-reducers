@@ -41,7 +41,7 @@ $ npm i -S react@next react-router redux react-redux
 
 Add a reducer to your route:
 
-```jsx
+```javascript
 <Route path='/' reducer={rootReducer}>
   <IndexRoute reducer={indexReducer}/>
   <Route path='dashboard' reducer={dashboardReducer}>
@@ -69,7 +69,7 @@ or as plain routes (recommended):
 Pass the RoutesReducer to the render function of ReactRouter
 
 Client:
-```jsx
+```javascript
 import React from 'react'
 import reducers from '../other/global/reducers' // needs to be an object (optional)
 import RoutesReducer from 'react-router-route-reducers'
@@ -104,7 +104,7 @@ main()
 ```
 
 Server:
-```jsx
+```javascript
 import { createStore } from 'redux'
 import Html from './components/Html'
 import React from 'react'
@@ -147,7 +147,7 @@ export default (app) => {
 
 Your reducers will then be composed into the following structure:
 
-```js
+```javascript
 {
   routereducers: {
     self: rootReducer,

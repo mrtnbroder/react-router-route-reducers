@@ -88,7 +88,7 @@ const onRender = (store) => (props) => (
 )
 
 const main = () => {
-  const store = createStore(reducers/*, no need to pass inital state, it will be handled by RoutesReducer */)
+  const store = createStore(reducers/*, initalState */)
   const rootEl = document.getElementById('app')
 
   // No need to wrap React-Router in <Provider/>, it will be handled inside <RoutesReducer/>
